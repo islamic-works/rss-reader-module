@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { registerElement } from 'nativescript-angular/element-registry';
+import * as utils from "tns-core-modules/utils/utils";
+
 import { CardView } from 'nativescript-cardview';
+
+import { registerElement } from 'nativescript-angular/element-registry';
 registerElement('CardView', () => CardView);
 
 @Component({
@@ -20,7 +23,7 @@ export class RssCardComponent implements OnInit {
 
   openLinkInBrowser() {
     console.log("Open Link In Browser: ", this.feed.link);
-    window.open(this.feed.link);
+    utils.openUrl(this.feed.link);
   }
 
 }
