@@ -1,0 +1,10 @@
+<DockLayout class="page">
+	<label dock="top" text="Ditos do Salaf" class="header" (tap)="refreshFeed()"></label>
+	<FlexboxLayout dock="bottom" class="footer"><ns-menu [active]="active"></ns-menu></FlexboxLayout>
+	<ScrollView height="100%" dock="left">
+		<StackLayout>
+			<ns-rss-card *ngFor="let feed of feeds" [feed]="feed"></ns-rss-card>
+			<app-spinner *ngIf="!feeds.length"></app-spinner>
+		</StackLayout>
+	</ScrollView>
+</DockLayout>

@@ -1,0 +1,14 @@
+<StackLayout padding="4">
+	<CardView ripple="true" margin="6" (tap)="openLinkInBrowser()">
+		<StackLayout>
+			<image [src]="feed.thumbnail" stretch="aspectFill"></image>
+			<label [text]="feed.title" class="h2" textWrap="true"></label>
+			<label
+				text="{{ feed.author }} - {{ feed.pubDate | date: 'dd-MM-yyyy' }}"
+				class="info"
+				textWrap="true"
+			></label>
+			<label [text]="feed.description" textWrap="true"></label>
+		</StackLayout>
+	</CardView>
+</StackLayout>
