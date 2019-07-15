@@ -9,6 +9,7 @@ import { MenuModule } from '../menu/menu.module';
 
 import { RssReaderComponent } from './rss-reader.component';
 import { RssCardComponent } from './rss-card/rss-card.component';
+import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
 
 const routes: Routes = [
   { path: "", component: RssReaderComponent },
@@ -22,7 +23,7 @@ const routes: Routes = [
     NativeScriptCommonModule,
     NativeScriptRouterModule.forChild(routes)],
   exports: [NativeScriptRouterModule, RssReaderComponent, RssCardComponent],
-  declarations: [RssReaderComponent, RssCardComponent],
+  declarations: [RssReaderComponent, RssCardComponent, StripHtmlTagsPipe],
   schemas: [NO_ERRORS_SCHEMA],
   entryComponents: [RssReaderComponent, RssCardComponent]
 })

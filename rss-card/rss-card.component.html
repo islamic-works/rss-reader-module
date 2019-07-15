@@ -8,7 +8,7 @@
 				class="info"
 				textWrap="true"
 			></label>
-			<label [text]="feed.description" textWrap="true"></label>
+			<label [text]="feed.description | stripHtmlTags " textWrap="true"></label>
 		</StackLayout>
 	</CardView>
 </StackLayout>
