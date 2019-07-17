@@ -17,19 +17,25 @@ export class RssReaderComponent implements OnInit {
   constructor(
     private page: Page,
     private rssReaderService: RssReaderService
-  ) { console.log("RssReaderComponent") }
+  ) {
+    if (this.rssReaderService.debug)
+      console.log("RssReaderComponent")
+  }
 
   ngOnInit() {
     this.active = "news"; // @todo news é o nome usado nas rotas, rever isso.
     this.page.actionBarHidden = true;
 
+    if (this.rssReaderService.debug)
+      console.log("ngOnInit()");
     this.refreshFeed();
   }
 
   refreshFeed() {
-    this.feedItems.length = 0; 
+    this.feedItems.length = 0;
 
-    if (this.rssReaderService.debug) console.log("RefreshFeed")
+    if (this.rssReaderService.debug)
+     console.log("RefreshFeed")
     this.rssReaderService.getFeedContent()
       .subscribe(
         feedContent => {

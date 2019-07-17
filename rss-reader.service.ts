@@ -40,11 +40,11 @@ export class RssReaderService {
     if (this.settings.debug) {
       console.log("encodeURL: ", url);
     }
-    console.log(encodeurl(url));
-    url = encodeurl(url);
-    if (this.settings.debug) {
-      console.log("Url Encoded: ", url);
-    }
+    //  console.log(encodeurl(url));
+    //  url = encodeurl(url);
+//    if (this.settings.debug) {
+//      console.log("Url Encoded: ", url);
+//    }
     if (this.settings.rssToJsonConverterType == "rss2json") {
       return this.http.get<Feed>(this.settings.rssToJsonConverterBaseUrl + url)
         .pipe(

@@ -10,6 +10,8 @@ import { MenuModule } from '../menu/menu.module';
 import { RssReaderComponent } from './rss-reader.component';
 import { RssCardComponent } from './rss-card/rss-card.component';
 import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
+import { SettingsService } from '../services/settings.service';
+import { RssReaderService } from './rss-reader.service';
 
 const routes: Routes = [
   { path: "", component: RssReaderComponent },
@@ -17,8 +19,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [
-        NativeScriptHttpClientModule,
+  imports: [
+    NativeScriptHttpClientModule,
     MenuModule,
     NativeScriptCommonModule,
     NativeScriptRouterModule.forChild(routes)],
@@ -28,5 +30,9 @@ const routes: Routes = [
   entryComponents: [RssReaderComponent, RssCardComponent]
 })
 export class RssReaderModule {
-  constructor(){console.log("RssReaderModule")}
- } 
+  constructor(
+    private rssReaderService: RssReaderService
+    ) {
+    if (this.rssReaderService.debug) console.log("RssReaderModule")
+  }
+} 
