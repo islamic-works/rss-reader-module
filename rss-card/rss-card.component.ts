@@ -4,6 +4,7 @@ import * as utils from "tns-core-modules/utils/utils";
 import { CardView } from 'nativescript-cardview';
 
 import { registerElement } from 'nativescript-angular/element-registry';
+import { FeedEntry } from '../feed-entry';
 registerElement('CardView', () => CardView);
 
 @Component({
@@ -14,7 +15,7 @@ registerElement('CardView', () => CardView);
 })
 export class RssCardComponent implements OnInit {
 
-  @Input() feed: any;
+  @Input() feed: FeedEntry;
 
   constructor() { }
 

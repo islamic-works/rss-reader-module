@@ -1,4 +1,7 @@
+import { FeedInfo } from "./feed-info";
+
 export interface FeedEntry {
+  feedInfo: FeedInfo,
   title: string,
   link: string,
   guid: string,

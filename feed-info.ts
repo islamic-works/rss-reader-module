@@ -1,3 +1,5 @@
+import { FeedEntry } from "./feed-entry";
+
 export interface FeedInfo {
   title: string,
   url: string,
@@ -5,4 +7,5 @@ export interface FeedInfo {
   author: string,
   description: string,
   image: string
+  items: FeedEntry[];
 }

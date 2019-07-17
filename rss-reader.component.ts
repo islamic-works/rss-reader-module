@@ -4,7 +4,6 @@ import { RssReaderService } from './rss-reader.service';
 import { FeedEntry } from './feed-entry';
 import { Page } from 'tns-core-modules/ui/page/page';
 
-
 @Component({
   selector: 'ns-rss-reader',
   templateUrl: './rss-reader.component.html',
@@ -13,7 +12,7 @@ import { Page } from 'tns-core-modules/ui/page/page';
 })
 export class RssReaderComponent implements OnInit {
   active: string;
-  feeds: Array<FeedEntry> = [];
+  feedItems: Array<FeedEntry> = [];
 
   constructor(
     private page: Page,
@@ -21,7 +20,6 @@ export class RssReaderComponent implements OnInit {
   ) { console.log("RssReaderComponent") }
 
   ngOnInit() {
-
     this.active = "news"; // @todo news é o nome usado nas rotas, rever isso.
     this.page.actionBarHidden = true;
 
@@ -29,16 +27,22 @@ export class RssReaderComponent implements OnInit {
   }
 
   refreshFeed() {
-    this.feeds.length = 0;
+    this.feedItems.length = 0; 
 
-    // let feedUrl: string = 'https%3A%2F%2Fwww.becompany.ch%2Fen%2Fblog%2Ffeed.xml';
-
-    console.log("RefreshFeed")
+    if (this.rssReaderService.debug) console.log("RefreshFeed")
     this.rssReaderService.getFeedContent()
       .subscribe(
-        res => this.feeds = res.items,
-        error => console.log(error)
-        );
+        feedContent => {
+          let items = feedContent.items
+            .map(entry => {
+              // este mapamento é importante para fazer o relacionamento entre a entrada do feed, e sua fonte;
+              entry.feedInfo = feedContent.feed;
+              return entry;
+            });
+          this.feedItems = this.feedItems.concat(items);
+        },
+        error => console.error(error)
+      );
   }
 
 
