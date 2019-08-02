@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as utils from "tns-core-modules/utils/utils";
 
-import { CardView } from 'nativescript-cardview';
-
 import { registerElement } from 'nativescript-angular/element-registry';
 import { FeedEntry } from '../feed-entry';
-registerElement('CardView', () => CardView);
+
+registerElement(
+  'CardView', 
+  () => require('@nstudio/nativescript-cardview').CardView
+);
 
 @Component({
   selector: 'ns-rss-card',
